@@ -1,7 +1,8 @@
 package com.gA.gaAcademy.solLipanovich.WebServices.webServices.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public class TopicController {
 	// Topic createTopic = topicService.createTopic(topicRequest); //podria hacer un
 	// get al ID que creo. Topic service solo crea un topic, y lo devuelve en forma
 	// de topic-
-	// return new ResponseEntity<TopicResponse>(new
+	// return new ResponseEntity<TopicResponse> (new
 	// TopicResponse(createTopic),httpsStatus.ACCEPTED);
 	// }
 
@@ -32,4 +33,11 @@ public class TopicController {
 		Topic topic = topicService.createTopic(inputTopic);
 		return topic;
 	}
+	
+	@GetMapping("/topic")
+	public List<Topic> getTopics(){
+		return topicService.getAllTopics();
+	}
+	
+	
 }
