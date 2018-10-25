@@ -1,6 +1,7 @@
 package com.gA.gaAcademy.solLipanovich.WebServices.webServices.entity;
 
 import java.util.Date;
+//si modifico algo de una entidad debo parar el servidor y volver a ejecutar para que cree bien la tabla en la DB
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Topic {
 	public Topic(String title, Date datePost, String description, int authorId) {
 		super();
 		this.title = title;
-		this.datePost = datePost;
+		this.datePost = new Date();
 		this.description = description;
 		this.authorId = authorId;
 	}

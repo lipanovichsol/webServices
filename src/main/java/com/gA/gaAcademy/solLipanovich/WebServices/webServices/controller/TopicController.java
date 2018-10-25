@@ -1,10 +1,11 @@
 package com.gA.gaAcademy.solLipanovich.WebServices.webServices.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,9 +36,18 @@ public class TopicController {
 	}
 	
 	@GetMapping("/topic")
-	public List<Topic> getTopics(){
+	public List<Topic> getAllTopics(){
 		return topicService.getAllTopics();
 	}
 	
+	@GetMapping("/topic/{id}") //se captura lo que se pone entre llaves
+	public Topic getTopicById(@PathVariable int id){         //el path variable captura lo que esta en la URL como parametro
+		return topicService.getTopicById(id);
+	}
+	
+	@PutMapping("/topic/{id}")
+	public Topic updateTopic(@PathVariable int id,@RequestBody Topic updateTopic) {
+		return topicService.updateTopic(id, updateTopic);
+	}
 	
 }

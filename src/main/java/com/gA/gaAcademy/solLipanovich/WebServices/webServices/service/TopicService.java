@@ -12,19 +12,39 @@ import com.gA.gaAcademy.solLipanovich.WebServices.webServices.repository.TopicRe
 public class TopicService {
 
 	@Autowired
-	TopicRepository topicRespository;
+	TopicRepository topicRepository;
 
 	public Topic createTopic(Topic inputTopic) {
-		Topic topic = topicRespository.save(inputTopic);
+		Topic topic = topicRepository.save(inputTopic);
 		return topic;
 	}
 
 	public List<Topic> getAllTopics() {
-		List<Topic> allTopics =  topicRespository.findAll();
-		return allTopics;
+		return topicRepository.findAll();
 	}
-	
-	//necesito devolver una lista de los topics.
-	//pedirselos al repository-> findAll
+
+	// necesito devolver una lista de los topics.
+	// pedirselos al repository-> findAll
+
+	public Topic getTopicById(int id) {
+		return topicRepository.findById(id).get(); // optional es un contenedor simple. Puede contener o no variable
+													// adentro.
+		// Si tiene la variable con un punto get la obtengo, sino levanta una excepcion.
+		// Por eso le hago GET
+	}
+
+	public Topic updateTopic(int id, Topic updateTopic) {
+		Topic toUpdateTopic = getTopicById(id);
+		if (updateTopic.getAuthorId() > 0)
+			toUpdateTopic.setAuthorId(updateTopic.getAuthorId());
+		if (updateTopic.getDatePost() != null)
+			toUpdateTopic.setDatePost(updateTopic.getDatePost());
+		if (updateTopic.getDescription() != null)
+			toUpdateTopic.setDescription(updateTopic.getDescription());
+		if (updateTopic.getTitle() != null)
+			toUpdateTopic.setTitle(updateTopic.getTitle());
+		toUpdateTopic = topicRepository.save(toUpdateTopic); 
+		return toUpdateTopic;
+	}
 
 }
