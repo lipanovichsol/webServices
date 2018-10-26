@@ -47,4 +47,23 @@ public class TopicService {
 		return toUpdateTopic;
 	}
 
+	public int deleteTopicFisico(int id) {
+		topicRepository.deleteById(id);
+		return id;
+	}
+
+	public int deleteLogicTopic(int id) {
+		
+		int toReturn=0;
+		
+		Topic topic = topicRepository.findById(id).get();
+		if(!topic.isDeleted()) {
+			topic.delete();
+			toReturn=topic.getId();
+			toReturn=topic.getId(); 
+			topicRepository.save(topic);
+		}
+		return toReturn;
+	}
+
 }

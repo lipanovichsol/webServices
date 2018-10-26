@@ -27,6 +27,8 @@ public class Topic {
 	// author
 	@Column(name = "author")
 	private int authorId;
+	@Column(name="deleted")
+	private boolean deleted=false;
 
 	public Topic() {
 
@@ -75,5 +77,18 @@ public class Topic {
 	public int getId() {
 		return id;
 	}
+		
+	public void setDeleted(boolean deleted) {
+		this.deleted=deleted;
+	}
+	
+	public boolean isDeleted() {
+		return this.deleted;
+	}
+	
+	public void delete() {
+		this.deleted=true;
+	}
+	
 
 }
